@@ -1,9 +1,10 @@
 <% provide(:title, 'All books') %>
-<h1>All books</h1>
 
-<%= will_paginate %>
-<ul class="books">
+<div class="row mb-2 justify-content-md-center">
+  <div class="col-md-8">
+    <h1>All books</h1>
     <%= render @books %>
-</ul>
+  </div>
+</div>
 
-<%= will_paginate %>
+<%= paginate @books %>
