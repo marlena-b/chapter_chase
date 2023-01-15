@@ -1,12 +1,10 @@
 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white">
   <div class="col p-4 d-flex flex-column position-static">
-    <strong class="d-inline-block mb-2 text-primary">Crime</strong>
+    <strong class="d-inline-block mb-2 text-primary"><%= book.genre %></strong>
     <h3 class="mb-0 fancy-font"><%= book.title %></h3>
     <div class="mb-1 text-muted">by <%= book.author%></div>
-    <p class="card-text mb-auto">After 30 years, Detective Jim Scharf arrested a teenage couple's murderer—and
-      exposed a looming battle between the
-      pursuit of justice...</p>
-    <a href="#" class="stretched-link">Continue reading</a>
+    <p class="card-text mb-auto"><%= book.description %></p>
+    <%= link_to "", book, class: "stretched-link" %>
   </div>
   <div class="col-auto mt-4 d-none d-lg-block">
   <%= image_tag("book-empty-cover.png", width:"150", height:"160") %>
