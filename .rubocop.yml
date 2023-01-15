@@ -3,3 +3,7 @@ Documentation:
   Enabled: false
 AllCops:
   NewCops: enable
+Rails/I18nLocaleTexts:
+  Enabled: false
+Rails/BulkChangeTable:
+  Enabled: false
