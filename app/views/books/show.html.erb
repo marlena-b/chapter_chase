@@ -1,0 +1,27 @@
+<div class="row mb-2">
+  <div class="col-md-3 mb-4 px-5 text-center">
+    <%= image_tag("book-empty-cover.png", class:"img-fluid rounded mb-3") %>
+    <div class="dropdown">
+      <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Add this book
+      </a>
+
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Want to read</a></li>
+        <li><a class="dropdown-item" href="#">Reading now</a></li>
+        <li><a class="dropdown-item" href="#">Read</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <strong class="d-inline-block mb-2 text-primary"><%= @book.genre %></strong>
+    <h3 class="mb-0 fancy-font"><%= @book.title %></h3>
+    <div class="mb-1 text-muted">by <%= @book.author %> </div>
+    <hr>
+    <div>
+    <% @book.description.split("\n").each do |paragraph| %>
+    <%= paragraph %>
+    <br>
+    <% end %>
+  </div>
+</div>
