@@ -21,6 +21,9 @@
     <strong class="d-inline-block mb-2 text-primary"><%= @book.genre %></strong>
     <h3 class="mb-0 fancy-font"><%= @book.title %></h3>
     <div class="mb-1 text-muted">by <%= @book.author %> </div>
+    <% if @book.isbn %>
+    <div class="mb-1 text-muted">Isbn <%= @book.isbn %> </div>
+    <% end %>
     <hr>
     <div>
     <% @book.description.split("\n").each do |paragraph| %>
