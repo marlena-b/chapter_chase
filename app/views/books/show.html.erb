@@ -1,6 +1,10 @@
 <div class="row mb-2">
   <div class="col-md-3 mb-4 px-5 text-center">
+    <% if @book.image.attached? %>
+    <%= image_tag(@book.image, class:"img-fluid rounded mb-3") %>
+    <% else %>
     <%= image_tag("book-empty-cover.png", class:"img-fluid rounded mb-3") %>
+    <% end %>
     <div class="dropdown">
       <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       Add this book

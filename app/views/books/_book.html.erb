@@ -7,6 +7,10 @@
     <%= link_to "", book, class: "stretched-link" %>
   </div>
   <div class="col-auto mt-4 d-none d-lg-block">
+  <% if book.image.attached? %>
+  <%= image_tag(book.image, width:"150", height:"160") %>
+   <% else %>
   <%= image_tag("book-empty-cover.png", width:"150", height:"160") %>
+  <% end %>
   </div>
 </div>

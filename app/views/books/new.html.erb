@@ -17,8 +17,8 @@
         <%= f.text_field :author, class: 'form-control' %>
       </div>
       <div class="mb-3">
-        <label for="bookFormCover" class="form-label">Add cover</label>
-        <input class="form-control" type="file" id="bookFormCover">
+        <%= f.label :image %>
+        <%= f.file_field :image, class: 'form-control' %>
       </div>
       <div class="mb-3">
          <%= f.label :genre %>
