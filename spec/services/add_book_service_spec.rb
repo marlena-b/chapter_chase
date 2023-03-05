@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe AddBookService, type: :service do
   describe 'call' do
     it 'creates user_book' do
-      user = User.create!(email: 'amasm@op.pl', password: 'password')
-      book = Book.create!(title: 'Aaaa', author: 'Bbbb', genre: 'criminal')
+      user = create(:user)
+      book = create(:book)
 
       user_book = AddBookService.new(user, book).call
 
@@ -17,8 +17,8 @@ RSpec.describe AddBookService, type: :service do
 
     context 'when user already added the book' do
       it 'does not create second user_book' do
-        user = User.create!(email: 'amasm@op.pl', password: 'password')
-        book = Book.create!(title: 'Aaaa', author: 'Bbbb', genre: 'criminal')
+        user = create(:user)
+        book = create(:book)
         AddBookService.new(user, book).call
 
         AddBookService.new(user, book).call

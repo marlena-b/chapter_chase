@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe RemoveBookService, type: :service do
   describe 'call' do
     it 'destroys user_book' do
-      user = User.create!(email: 'amasm@op.pl', password: 'password')
-      book = Book.create!(title: 'Aaaa', author: 'Bbbb', genre: 'criminal')
+      user = create(:user)
+      book = create(:book)
       user_book = AddBookService.new(user, book).call
 
       RemoveBookService.new(user, user_book.id).call
@@ -17,7 +17,7 @@ RSpec.describe RemoveBookService, type: :service do
 
     context 'when user does not have the book added' do
       it 'raises not found error' do
-        user = User.create!(email: 'amasm@op.pl', password: 'password')
+        user = create(:user)
 
         expect do
           RemoveBookService.new(user, 999).call
