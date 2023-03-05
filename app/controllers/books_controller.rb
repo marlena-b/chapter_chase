@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @user_book = UserBook.find_by(user: current_user, book: @book)
   end
 
   def new
@@ -22,6 +23,8 @@ class BooksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  private
 
   def book_params
     params.require(:book).permit(:title, :author, :publication_date, :publisher, :isbn, :isbn13, :description, :genre,

@@ -5,17 +5,7 @@
     <% else %>
     <%= image_tag("book-empty-cover.png", class:"img-fluid rounded mb-3") %>
     <% end %>
-    <div class="dropdown">
-      <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Add this book
-      </a>
-
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Want to read</a></li>
-        <li><a class="dropdown-item" href="#">Reading now</a></li>
-        <li><a class="dropdown-item" href="#">Read</a></li>
-      </ul>
-    </div>
+    <%= render "add_book_button", book: @book, user_book: @user_book %>
   </div>
   <div class="col-md-9">
     <strong class="d-inline-block mb-2 text-primary"><%= @book.genre %></strong>

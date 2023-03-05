@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'books#index'
   resources :books, only: %i[show index new create]
+  resources :user_books, only: %i[create destroy]
 end

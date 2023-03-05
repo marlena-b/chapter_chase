@@ -1,0 +1,15 @@
+
+<% if user_signed_in? %>
+  <% if user_book.present? %>
+    <button type="button" class="btn btn-outline-success btn-lg" disabled> ✓ On the shelf</button>
+    <br>
+    <%= link_to "Remove Book", user_book, data: { "turbo-method": :delete }, class: "link-secondary" %>
+  <% else %>
+    <%= form_with url: user_books_path, method: :post do |form| %>
+      <%= form.hidden_field :book_id, value: book.id %>
+      <%= form.submit "Add Book", class: "btn btn-success btn-lg"%>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to "Add Book", new_user_registration_path, class: "btn btn-success btn-lg" %>
+<% end %>
