@@ -7,3 +7,7 @@ Rails/I18nLocaleTexts:
   Enabled: false
 Rails/BulkChangeTable:
   Enabled: false
+Rails/NotNullColumn:
+  Enabled: false
+Metrcis/BlockLength:
+  AllowedMethods: ['describe', 'context']

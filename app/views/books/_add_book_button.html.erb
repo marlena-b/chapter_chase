@@ -1,14 +1,26 @@
 
 <% if user_signed_in? %>
+  <%= form_with url: user_books_path, method: :post do |form| %>
+    <%= form.hidden_field :book_id, value: book.id %>
+      <div class="dropdown">
+      <% if user_book.present? %>
+        <button class="btn btn-outline-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         ✓ <%= human_readable_shelf(user_book.shelf) %>
+        </button>
+      <% else %>
+        <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Add this book
+        </button>
+      <% end %>
+      <ul class="dropdown-menu">
+        <li><%= form.button "Read", name: "shelf", value: "read", class: "dropdown-item"%></li>
+        <li><%= form.button "Want to Read", name: "shelf", value: "want_to_read", class: "dropdown-item"%></li>
+        <li><%= form.button "Reading", name: "shelf", value: "reading", class: "dropdown-item"%></li>
+      </ul>
+    </div>
+  <% end %>
   <% if user_book.present? %>
-    <button type="button" class="btn btn-outline-success btn-lg" disabled> ✓ On the shelf</button>
-    <br>
     <%= link_to "Remove Book", user_book, data: { "turbo-method": :delete }, class: "link-secondary" %>
-  <% else %>
-    <%= form_with url: user_books_path, method: :post do |form| %>
-      <%= form.hidden_field :book_id, value: book.id %>
-      <%= form.submit "Add Book", class: "btn btn-success btn-lg"%>
-    <% end %>
   <% end %>
 <% else %>
   <%= link_to "Add Book", new_user_registration_path, class: "btn btn-success btn-lg" %>

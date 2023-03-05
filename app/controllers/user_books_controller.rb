@@ -3,7 +3,7 @@
 class UserBooksController < ApplicationController
   def create
     book = Book.find(params[:book_id])
-    AddBookService.new(current_user, book).call
+    AddBookService.new(current_user, book, shelf: params[:shelf]).call
     redirect_to book
   end
 
