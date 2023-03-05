@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe AddBookService, type: :service do
   describe 'call' do
-    it 'creates user_book' do
-      user = create(:user)
-      book = create(:book)
+    let(:user) { create(:user) }
+    let(:book) { create(:book) }
 
+    it 'creates user_book' do
       user_book = AddBookService.new(user, book, shelf: 'reading').call
 
       expect(user_book.user).to eq(user)
@@ -17,19 +17,16 @@ RSpec.describe AddBookService, type: :service do
     end
 
     it 'does not create user book if self is not correct' do
-      user = create(:user)
-      book = create(:book)
-
       user_book = AddBookService.new(user, book, shelf: 'fake').call
       expect(user_book).not_to be_persisted
     end
 
     context 'when user already added the book' do
-      it 'does not create second user_book' do
-        user = create(:user)
-        book = create(:book)
+      before do
         AddBookService.new(user, book, shelf: 'read').call
+      end
 
+      it 'does not create second user_book' do
         AddBookService.new(user, book, shelf: 'read').call
 
         count = UserBook.where(user:, book:).count
@@ -37,10 +34,6 @@ RSpec.describe AddBookService, type: :service do
       end
 
       it 'updates the shelf' do
-        user = create(:user)
-        book = create(:book)
-        AddBookService.new(user, book, shelf: 'read').call
-
         user_book = AddBookService.new(user, book, shelf: 'reading').call
 
         count = UserBook.where(user:, book:).count
