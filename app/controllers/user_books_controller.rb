@@ -11,4 +11,10 @@ class UserBooksController < ApplicationController
     book = RemoveBookService.new(current_user, params[:id]).call
     redirect_to book
   end
+
+  def rate
+    user_book = UserBook.find(params[:id])
+    RateBookService.new(user_book, params[:rating]).call
+    redirect_to user_book.book
+  end
 end

@@ -21,6 +21,7 @@
   <% end %>
   <% if user_book.present? %>
     <%= link_to "Remove Book", user_book, data: { "turbo-method": :delete }, class: "link-secondary" %>
+    <%= render "rating", user_book: user_book %>
   <% end %>
 <% else %>
   <%= link_to "Add Book", new_user_registration_path, class: "btn btn-success btn-lg" %>

@@ -4,4 +4,9 @@ class UserBook < ApplicationRecord
   belongs_to :user
   belongs_to :book
   validates :shelf, presence: true, inclusion: { in: %w[read want_to_read reading] }
+  validates :rating, numericality: { in: 0..5 }, allow_nil: true
+
+  def rating
+    self[:rating] || 0
+  end
 end

@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'books#index'
   resources :books, only: %i[show index new create]
-  resources :user_books, only: %i[create destroy]
+  resources :user_books, only: %i[create destroy] do
+    member do
+      patch 'rate'
+    end
+  end
 end
