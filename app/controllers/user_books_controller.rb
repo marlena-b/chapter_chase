@@ -13,7 +13,7 @@ class UserBooksController < ApplicationController
   end
 
   def rate
-    user_book = UserBook.find(params[:id])
+    user_book = current_user.user_books.find(params[:id])
     RateBookService.new(user_book, params[:rating]).call
     redirect_to user_book.book
   end
