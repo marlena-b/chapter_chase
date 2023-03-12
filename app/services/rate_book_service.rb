@@ -8,6 +8,7 @@ class RateBookService
 
   def call
     @user_book.update(rating: @rating)
+    @user_book.book.recalculate_average_rating
     @user_book
   end
 end

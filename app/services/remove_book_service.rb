@@ -9,6 +9,7 @@ class RemoveBookService
   def call
     user_book = UserBook.find_by!(user: @user, id: @user_book_id)
     user_book.destroy
+    user_book.book.recalculate_average_rating
     user_book.book
   end
 end

@@ -10,7 +10,7 @@ class Book < ApplicationRecord
   validates :isbn,   isbn_format: true, allow_blank: true
   validates :isbn13, isbn_format: { with: :isbn13 }, allow_blank: true
 
-  def average_rating
-    user_books.average(:rating)
+  def recalculate_average_rating
+    update(average_rating: user_books.average(:rating))
   end
 end

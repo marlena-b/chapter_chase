@@ -2,7 +2,7 @@
 
 class BooksController < ApplicationController
   def index
-    @books = Book.page(params[:page])
+    @books = Book.page(params[:page]).order(:id).with_attached_image
   end
 
   def show

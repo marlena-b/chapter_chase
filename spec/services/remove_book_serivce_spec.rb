@@ -16,6 +16,15 @@ RSpec.describe RemoveBookService, type: :service do
       expect(count).to eq(0)
     end
 
+    it 'recalculates book average_rating' do
+      user_book = AddBookService.new(user, book, shelf: 'reading').call
+      RateBookService.new(user_book, 4).call
+
+      RemoveBookService.new(user, user_book.id).call
+
+      expect(user_book.book.reload.average_rating).to eq(nil)
+    end
+
     context 'when user does not have the book added' do
       it 'raises not found error' do
         expect do
