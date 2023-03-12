@@ -14,6 +14,7 @@
     <% if @book.isbn %>
     <div class="mb-1 text-muted">Isbn <%= @book.isbn %> </div>
     <% end %>
+    <div class="mb-1 text-muted"><%= @book.average_rating %> </div>
     <hr>
     <div>
     <% @book.description.split("\n").each do |paragraph| %>

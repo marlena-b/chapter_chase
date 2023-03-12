@@ -2,7 +2,8 @@
   <div class="col p-4 d-flex flex-column position-static">
     <strong class="d-inline-block mb-2 text-primary"><%= book.genre %></strong>
     <h3 class="mb-0 fancy-font"><%= book.title %></h3>
-    <div class="mb-1 text-muted">by <%= book.author%></div>
+    <div class="mb-1 text-muted">by <%= book.author%>
+    <br> <%= book.average_rating %></div>
     <p class="card-text mb-auto"><%= book.description %></p>
     <%= link_to "", book, class: "stretched-link" %>
   </div>
