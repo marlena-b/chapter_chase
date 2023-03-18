@@ -8,7 +8,7 @@ RSpec.describe RemoveBookService, type: :service do
     let(:book) { create(:book) }
 
     it 'destroys user_book' do
-      user_book = AddBookService.new(user, book, shelf: 'reading').call
+      user_book = UpsertUserBookService.new(user, book, shelf: 'reading').call
 
       RemoveBookService.new(user, user_book.id).call
 
@@ -17,7 +17,7 @@ RSpec.describe RemoveBookService, type: :service do
     end
 
     it 'recalculates book average_rating' do
-      user_book = AddBookService.new(user, book, shelf: 'reading').call
+      user_book = UpsertUserBookService.new(user, book, shelf: 'reading').call
       RateBookService.new(user_book, 4).call
 
       RemoveBookService.new(user, user_book.id).call

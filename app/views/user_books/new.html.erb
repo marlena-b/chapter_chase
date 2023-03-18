@@ -1,0 +1,41 @@
+<div class="row mb-2">
+  <div class="col-md-3 mb-4 px-5 text-center">
+    <% if @book.image.attached? %>
+    <%= image_tag(@book.image, class:"img-fluid rounded mb-3") %>
+    <% else %>
+    <%= image_tag("book-empty-cover.png", class:"img-fluid rounded mb-3") %>
+    <% end %>
+  </div>
+  <div class="col-md-9">
+    <strong class="d-inline-block mb-2 text-primary"><%= @book.genre %></strong>
+    <h3 class="mb-0 fancy-font"><%= @book.title %></h3>
+    <div class="mb-1 text-muted">by <%= @book.author %> </div>
+    <% if @book.isbn %>
+    <div class="mb-1 text-muted">Isbn <%= @book.isbn %> </div>
+    <% end %>
+    <div class="mb-1 text-muted"><%= @book.average_rating %> </div>
+    <hr>
+    <div>
+     <div>
+    <%= form_with(model: @user_book) do |f| %>
+     <%= f.hidden_field :book_id, value: @book.id %>
+      <div class="mb-3">
+      <%= f.label :shelf %>
+      <%= f.select(:shelf, options_for_select([['Reading', 'reading'], ['Want to read', 'want_to_read'], ['Read', 'read']], @user_book.shelf), {}, class: 'form-select') %>
+      </div>
+      <div class="mb-3">
+      <%= f.label :rating %>
+      <%= f.select(:rating, options_for_select([['★★★★★', 5], ['★★★★', 4],['★★★', 3], ['★★', 2], ['★', 1]], @user_book.rating), {}, class: 'form-select') %>
+      </div>
+      <div class="mb-3">
+       <%= f.label :review_title %>
+       <%= f.text_field :review_title, class: 'form-control'%>
+      </div>
+      <div class="mb-3">
+         <%= f.label :review %>
+        <%= f.text_area :review, class: 'form-control' %>
+      </div>
+       <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+    </div>
+</div>

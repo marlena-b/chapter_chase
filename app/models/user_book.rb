@@ -9,4 +9,8 @@ class UserBook < ApplicationRecord
   def rating
     self[:rating] || 0
   end
+
+  def review?
+    review.present? || review_title.present?
+  end
 end

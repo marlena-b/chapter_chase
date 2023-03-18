@@ -1,0 +1,20 @@
+<h3>My Review</h2>
+    <div class="mt-4 card">
+      <div class="row card-body">
+        <div class="col-md-3">
+        <span class="fancy-font"><%= @user_book.user.name %></span>
+        </div>
+        <div class="col-md-9">
+          <div class="d-flex justify-content-between">
+            <div class="p-2"><span style="color: #FFD700;"><%= '★' * @user_book.rating %></span><span style="color: #DDD;"><%= '★' * (5 - @user_book.rating) %></span></div>
+            <div class="p-2 text-muted"><%= @user_book.updated_at&.to_date %></div>
+          </div>
+
+          <div class="mt-2">
+            <b><%= @user_book.review_title %></b>
+            <p><%= @user_book.review %></p>
+          </div>
+          <%= link_to "✏️ Edit review", new_user_book_path(book_id: @book.id), class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>

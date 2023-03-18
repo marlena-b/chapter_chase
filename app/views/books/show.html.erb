@@ -12,14 +12,27 @@
     <h3 class="mb-0 fancy-font"><%= @book.title %></h3>
     <div class="mb-1 text-muted">by <%= @book.author %> </div>
     <% if @book.isbn %>
-    <div class="mb-1 text-muted">Isbn <%= @book.isbn %> </div>
+      <div class="mb-1 text-muted">Isbn <%= @book.isbn %> </div>
     <% end %>
     <div class="mb-1 text-muted"><%= @book.average_rating %> </div>
     <hr>
     <div>
-    <% @book.description.split("\n").each do |paragraph| %>
-    <%= paragraph %>
-    <br>
+      <% @book.description.split("\n").each do |paragraph| %>
+        <%= paragraph %>
+        <br>
+      <% end %>
+    </div>
+    <hr>
+    <% if @user_book.review? %>
+    <div class="mt-4">
+    <%= render "review", user_book: @user_book %>
+    </div>
     <% end %>
+    <h3 class="mt-4">Community Reviews</h3>
+    <div>
+    <% if !@user_book.review? %>
+    <%= link_to "Add your review!", new_user_book_path(book_id: @book.id), class: "btn btn-success btn-lg" %>
+    <% end %>
+    </div>
   </div>
 </div>

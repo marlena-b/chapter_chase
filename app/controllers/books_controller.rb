@@ -7,7 +7,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @user_book = UserBook.find_by(user: current_user, book: @book)
+    @user_book = UserBook.find_or_initialize_by(user: current_user, book: @book)
   end
 
   def new
