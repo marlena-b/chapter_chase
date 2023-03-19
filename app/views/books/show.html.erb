@@ -30,13 +30,13 @@
     </div>
     <% end %>
     <h3 class="mt-4">Community Reviews</h3>
-    <% @community_reviews.each do |user_book| %>
-    <%= render "review", user_book: user_book %>
-    <% end %>
     <div>
     <% if !@user_book.review? %>
     <%= link_to "Add your review!", new_user_book_path(book_id: @book.id), class: "btn btn-success btn-lg" %>
     <% end %>
     </div>
+    <% @community_reviews.each do |user_book| %>
+    <%= render "review", user_book: user_book %>
+    <% end %>
   </div>
 </div>
