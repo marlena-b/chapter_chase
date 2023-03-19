@@ -8,6 +8,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @user_book = UserBook.find_or_initialize_by(user: current_user, book: @book)
+    @community_reviews = @book.user_books.where.not(user: current_user).and(UserBook.with_review).includes(:user)
   end
 
   def new

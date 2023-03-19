@@ -30,3 +30,24 @@ Book.create!(
     description: Faker::Lorem.paragraph(sentence_count: 5)
   )
 end
+
+5.times do |i|
+  User.create!(
+    email: "john#{i}@example.com",
+    password: 'password',
+    name: Faker::Name.name
+  )
+end
+
+User.all.each do |user|
+  Book.all.each do |book|
+    UserBook.create!(
+      user:,
+      book:,
+      shelf: 'read',
+      rating: (1..5).to_a.sample,
+      review_title: Faker::Lorem.sentence,
+      review: Faker::Lorem.paragraph(sentence_count: 5)
+    )
+  end
+end
