@@ -2,7 +2,7 @@
 
 class BooksController < ApplicationController
   def index
-    @books = Book.page(params[:page]).order(:id).with_attached_image
+    @books = SearchBooksService.new(params[:search_term]).call.page(params[:page])
   end
 
   def show

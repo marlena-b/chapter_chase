@@ -1,9 +1,21 @@
-<% provide(:title, 'All books') %>
+<% provide(:title, 'Search') %>
 
+<div class="px-4 mb-5 my-5 text-center">
+  <h1 class="display-5 fw-bold fancy-font">Browse the library.</h1>
+  <div class="col-lg-7 mx-auto mt-3">
+    <%= form_with(url: books_path, method: :get, class: "row") do |form| %>
+      <div class="col-sm-10">
+       <%= form.text_field :search_term, class: "form-control", placeholder: "Alice in Wonderland..", value: params[:search_term] %>
+      </div>
+      <div class="col-auto">
+      <%= form.submit "Search", class: "btn btn-outline-secondary mb-3" %>
+      </div>
+    <% end %>
+  </div>
+</div>
 <div class="row mb-2 justify-content-md-center">
   <div class="col-md-8">
-    <h1>All books</h1>
     <%= render @books %>
-    <%= paginate @books %> </div>
+    <%= paginate @books %>
 </div>
-
+</div>
