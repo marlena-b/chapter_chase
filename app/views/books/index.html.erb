@@ -1,7 +1,7 @@
 <% provide(:title, 'Search') %>
 
-<div class="px-4 mb-5 my-5 text-center">
-  <h1 class="display-5 fw-bold fancy-font">Browse the library.</h1>
+<div class="px-4 mb-5 my-5 ">
+  <h1 class="display-5 fw-bold fancy-font text-center">Browse the library.</h1>
   <div class="col-lg-7 mx-auto mt-3">
     <%= form_with(url: books_path, method: :get, class: "row") do |form| %>
       <div class="col-sm-10">
@@ -10,6 +10,24 @@
       <div class="col-auto">
       <%= form.submit "Search", class: "btn btn-outline-secondary mb-3" %>
       </div>
+      <div class="col text-muted">
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :search_by, 'all', class: "form-check-input", checked: params[:search_by] == "all" || params[:search_by].blank? %>
+          <%= form.label :search_by, 'All' %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :search_by, 'title', class: "form-check-input", checked: params[:search_by] == "title" %>
+          <%= form.label :search_by, 'Title' %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :search_by, 'author', class: "form-check-input", checked: params[:search_by] == "author" %>
+          <%= form.label :search_by, 'Author' %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.radio_button :search_by, 'isbn', class: "form-check-input", checked: params[:search_by] == "isbn"  %>
+          <%= form.label :search_by, 'ISBN' %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
@@ -17,5 +35,5 @@
   <div class="col-md-8">
     <%= render @books %>
     <%= paginate @books %>
-</div>
+  </div>
 </div>

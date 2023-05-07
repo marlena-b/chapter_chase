@@ -2,7 +2,7 @@
 
 class BooksController < ApplicationController
   def index
-    @books = SearchBooksService.new(params[:search_term]).call.page(params[:page])
+    @books = SearchBooksService.new(params).call.page(params[:page])
   end
 
   def show

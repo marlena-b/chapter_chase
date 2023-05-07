@@ -17,25 +17,29 @@ RSpec.describe SearchBooksService, type: :service do
     end
 
     it 'finds a book when match on title' do
-      books = SearchBooksService.new('Hunger').call
+      params = { search_term: 'Hunger', search_by: 'all' }
+      books = SearchBooksService.new(params).call
 
       expect(books).to contain_exactly(book2)
     end
 
     it 'finds a book when match on author' do
-      books = SearchBooksService.new('Collins').call
+      params = { search_term: 'Collins', search_by: 'all' }
+      books = SearchBooksService.new(params).call
 
       expect(books).to contain_exactly(book2)
     end
 
     it 'finds a book when match on isbn' do
-      books = SearchBooksService.new('83-7278').call
+      params = { search_term: '83-7278', search_by: 'all' }
+      books = SearchBooksService.new(params).call
 
       expect(books).to contain_exactly(book2)
     end
 
     it 'finds a book when match on isbn13' do
-      books = SearchBooksService.new('8372789').call
+      params = { search_term: '8372789', search_by: 'all' }
+      books = SearchBooksService.new(params).call
 
       expect(books).to contain_exactly(book2)
     end
