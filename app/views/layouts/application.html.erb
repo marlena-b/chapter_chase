@@ -35,18 +35,9 @@
     </header>
     <div class="nav-scroller py-1 mb-2">
       <nav class="nav d-flex justify-content-between">
-        <a class="p-2 link-secondary" href="#">Biography</a>
-        <a class="p-2 link-secondary" href="#">Business</a>
-        <a class="p-2 link-secondary" href="#">Classics</a>
-        <a class="p-2 link-secondary" href="#">Crime</a>
-        <a class="p-2 link-secondary" href="#">Fantasy</a>
-        <a class="p-2 link-secondary" href="#">Fiction</a>
-        <a class="p-2 link-secondary" href="#">History</a>
-        <a class="p-2 link-secondary" href="#">Horror</a>
-        <a class="p-2 link-secondary" href="#">Nonfiction</a>
-        <a class="p-2 link-secondary" href="#">Psychology</a>
-        <a class="p-2 link-secondary" href="#">Romance</a>
-        <a class="p-2 link-secondary" href="#">Travel</a>
+        <% Book.distinct.pluck(:genre).first(8).each do |genre| %>
+          <%= link_to genre, books_path(genre: genre), class: "p-2 link-secondary" %>
+        <% end %>
       </nav>
     </div>
   </div>
